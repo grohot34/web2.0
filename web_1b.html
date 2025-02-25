@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма с взаимодействием</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        body { font-family: Arial, sans-serif; }
+        .hidden { opacity: 0; transition: opacity 1s; }
+        .colored { color: blue; }
+        .styled { font-family: 'Comic Neue', cursive; font-style: italic; font-weight: bold; }
+        .added-text::after { content: ' after(content)'; color: red; }
+        #btn1:hover { background-color: lightblue; }
+        #btn2:active { background-color: lightcoral; }
+        ul li:nth-child(odd) { font-family: 'Press Start 2P', cursive; color: purple; }
+        ul li:last-child { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <form>
+        <input type="text" id="text1">
+        <input type="text" id="text2">
+        <input type="text" id="text3">
+        <input type="text" id="text4">
+        <input type="text" id="text5">
+        
+        <p id="p1">Параграф 1</p>
+        <p id="p2">Параграф 2</p>
+        <p id="p3">Параграф 3</p>
+        <p id="p4">Параграф 4</p>
+        <p id="p5">Параграф 5</p>
+        
+        <ul id="list">
+            <li>Элемент 1</li>
+            <li>Элемент 2</li>
+            <li>Элемент 3</li>
+            <li>Элемент 4</li>
+            <li>Элемент 5</li>
+        </ul>
+        
+        <button type="button" id="btn1">Кнопка 1</button>
+        <button type="button" id="btn2">Кнопка 2</button>
+    </form>
+    
+    <script>
+        document.getElementById("btn1").addEventListener("click", function() {
+            let texts = ["text1", "text3", "text5"].map(id => document.getElementById(id));
+            texts.forEach(input => input.classList.add("colored"));
+            
+            let paragraphs = ["p1", "p3", "p5"].map(id => document.getElementById(id));
+            paragraphs.forEach(p => p.classList.add("styled"));
+            
+            let evenParagraphs = ["p2", "p4"].map(id => document.getElementById(id));
+            evenParagraphs.forEach(p => p.classList.add("added-text"));
+        });
+        
+        document.getElementById("btn2").addEventListener("click", function() {
+            document.getElementById("btn1").style.color = "green";
+            let items = document.querySelectorAll("#list li");
+            items.forEach((item, index) => {
+                setTimeout(() => item.classList.add("hidden"), index * 1000);
+            });
+        });
+    </script>
+</body>
+</html>
