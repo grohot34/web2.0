@@ -4,149 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Таблица</title>
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-			font-family: sans-serif;
-        }
-
-        table{
-			height: fit-content;
-            width: fit-content;
-            border-collapse: collapse;
-        }
-        td {
-            border: 4px solid black;
-            text-align: center;
-            padding: 10px;
-            
-        }
-        .one-pixel-border{
-            border: 1px solid black;
-        }
-        .no-border-right{
-            border-right: none;
-        }
-        .red {
-            background-color: rgb(179, 103, 103);
-            color:black;
-        }
-        .blue {
-            background-color: rgb(70, 70, 148);
-            color: black;
-        }
-        .custom_text1{
-            font-style: italic;
-            color: #33ff44;
-            text-decoration: underline;
-        }
-        td > em{
-            color:rgb(0, 255, 21);
-            font-style: italic;
-        }
-        td > strong{
-            color:rgb(0, 102, 255);
-            font-weight: bold;
-        }
-        .custom_text3{
-            font-size: 1.5em;
-            color: 1rem;
-            font-stretch:expanded;
-        }
-        .custom_text5{
-            font-family:Impact, fantasy;
-            color:aquamarine;
-        }
-
-        .custom_list2{
-            list-style-type: none;
-            padding-left: 0;
-        }
-        .custom_list2 li {
-			padding-left: 10px;
-            position: relative;
-            
-        }
-
-        .custom_list2 li::before{
-            content: "-";
-            position: absolute;
-            left: 0;
-            font-weight: bold;
-        }
-        .custom_text4 {
-            font-stretch: condensed;
-            color:rgb(124, 184, 202);
-        }
-        
-        ol {
-            list-style-position: inside;
-            padding-left: 20px;
-            text-align: justify;  
-        }
-
-        ol:nth-child(2){
-            padding-left: 0px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        ol ol {
-        padding-left: 30px;
-        }
-
-        ul {
-            list-style-type: disc;
-            padding-left: 40px;
-            text-align: justify;
-        }
-
-        .country {
-            font-style: italic;
-            font-weight: bold;
-            
-        }
-        li {
-			padding-left: 10px;
-			min-width: 150px;
-            margin-left: 0;
-        }
-
-        a {
-            color: blue;
-            text-decoration: underline;
-        }
-		
-		caption{
-			font-size: 3rem;
-			font-weight: 700;
-		}
-		
-		th{
-			text-align: left;
-		}
-
-    </style>
-
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <table>
-		<caption>Информация об авто</caption>
+        <caption>Информация об авто</caption>
         <tr>
-            <td class="red custom_text1" >Автомобили</td>
-            
-            <td rowspan="3" class="red"><h1 style="color:rgb(210, 160, 124); font-size: 2.5em;">Завод по производству авто</h1><img src="avtovaz.jpg" width="250" height="180"></td>
-            <td class="red"><span style="color: bisque; font-size: 1em;">Предыстория</span></td>
-            
-            <td class="red no-border-right"><span style="color: yellowgreen; font-size: 1.2em;">Запчасти</span></td>
+            <td class="red custom_text1">Автомобили</td>
+            <td rowspan="3" class="red"><h1>Завод по производству авто</h1><img src="avtovaz.jpg" width="250" height="180"></td>
+            <td class="red"><span>Предыстория</span></td>
+            <td class="red no-border-right"><span>Запчасти</span></td>
             <td rowspan="2" colspan="2" class="blue one-pixel-border"><img src="ladaGranta.jfif" width="275" height="130"><img src="ladaVesta.jfif" width="275" height="130"></td>
         </tr>
         <tr>
-            <td class="red"><h2>Крупнейшие автомобильные бренды различных стран</h2>
-
+            <td class="red">
+                <h2>Крупнейшие автомобильные бренды различных стран</h2>
                 <ol>
                     <li class="country">Германия
                         <ol>
@@ -162,71 +34,60 @@
                             <li>Honda</li>
                         </ul>
                     </li>
-                </ol></td>
-            <td class="red custom_text4">В 1929 году СССР заключил соглашение с Ford, что помогло запустить производство на ГАЗ. В 1970 году появился ВАЗ, начавший выпуск «Жигулей» на базе Fiat 124, ставших самыми популярными автомобилями в стране.</td>
+                </ol>
+            </td>
+            <td class="red custom_text4">В 1929 году СССР заключил соглашение с Ford, что помогло запустить производство на ГАЗ...</td>
             <td rowspan="2" class="red no-border-right">
-				<h3>Меню автозапчастей</h3>
-				<ol type='I'>
-					<li>
-						<strong>Двигатель</strong>
-						<ol type='A'>
-							<li>
-								<strong>Система впуска</strong>
-								<ol type='1'>
-									<li>Воздушный фильтр</li>
-									<li>Дроссельная заслонка</li>
-								</ol>
-							</li>
-							<li>
-								<strong>Система выпуска</strong>
-								<ol type='a'>
-									<li>Глушитель</li>
-									<li>Катализатор</li>
-								</ol>
-							</li>
-						</ol>
-					</li>
-					<li>
-						<strong>Ходовая часть</strong>
-						<ol type='A'>
-							<li>
-								<strong>Подвеска</strong>
-								<ol type='1'>
-									<li>Амортизаторы</li>
-									<li>Пружины</li>
-									<li>Сайлентблоки</li>
-								</ol>
-							</li>
-							<li>
-								<strong>Тормозная система</strong>
-								<ol type='a'>
-									<li>Дисковые тормоза</li>
-									<li>Барабанные тормоза</li>
-								</ol>
-							</li>
-						</ol>
-					</li>
-				</ol>
-			</td>
-            
+                <h3>Меню автозапчастей</h3>
+                <ol type='I'>
+                    <li>
+                        <strong>Двигатель</strong>
+                        <ol type='A'>
+                            <li><strong>Система впуска</strong>
+                                <ol type='1'>
+                                    <li>Воздушный фильтр</li>
+                                    <li>Дроссельная заслонка</li>
+                                </ol>
+                            </li>
+                            <li><strong>Система выпуска</strong>
+                                <ol type='a'>
+                                    <li>Глушитель</li>
+                                    <li>Катализатор</li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </li>
+                    <li><strong>Ходовая часть</strong>
+                        <ol type='A'>
+                            <li><strong>Подвеска</strong>
+                                <ol type='1'>
+                                    <li>Амортизаторы</li>
+                                    <li>Пружины</li>
+                                    <li>Сайлентблоки</li>
+                                </ol>
+                            </li>
+                            <li><strong>Тормозная система</strong>
+                                <ol type='a'>
+                                    <li>Дисковые тормоза</li>
+                                    <li>Барабанные тормоза</li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
+            </td>
         </tr>
         <tr>
-            <td class="red"><span style="font-size: 1.2em; font-weight: bold; color:black;">
-                Современные автомобили предлагают множество функций для удобства водителя. Например, 
-                новые модели оснащены системами помощи при парковке, что значительно облегчает маневрирование.</span>
-                <span>Также многие автомобили используют</span>
-                <em>зеленые</em>
-                акценты в дизайне, такие как подсветка и отделка, а <strong>слово</strong> "инновация" становится синонимом новых технологий.</td>
-            <td class="red custom_text5">Советский автопром славился надежными и простыми в обслуживании автомобилями, такими как «Жигули», «Москвич» и «Волга». Машины разрабатывались с учетом сложных дорожных условий и широко использовались как в городах, так и в сельской местности.</td>
-            
-            <td class="blue one-pixel-border custom_text3">Lada — популярный российский автопроизводитель, известный своими доступными и надёжными автомобилями. Бренд постоянно обновляет модели, улучшая качество и технические характеристики.</td>
+            <td class="red"><span>Современные автомобили предлагают множество функций...</span></td>
+            <td class="red custom_text5">Советский автопром славился надежными и простыми в обслуживании автомобилями...</td>
+            <td class="blue one-pixel-border custom_text3">Lada — популярный российский автопроизводитель...</td>
             <td class="blue one-pixel-border">Модели
-            <ul class="custom_list2">
-                <li>Lada Granta</li>
-                <li>Lada Vesta</li>
-            </ul></td>
+                <ul class="custom_list2">
+                    <li>Lada Granta</li>
+                    <li>Lada Vesta</li>
+                </ul>
+            </td>
         </tr>
-
     </table>
 </body>
 </html>
