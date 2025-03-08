@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="laba_3.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Ultimatum</h1>
+        </header>
+        <nav>
+            <p>Главная | О нас | Контакты</p>
+        </nav>
+        <div class="main-content">
+            <article>
+                <h2>Новые блоги</h2>
+                <section>
+                    <p>Раздел</p>
+                </section>
+            </article>
+            <aside>
+                <h2>Актуальные темы</h2>
+                <p>Лучшие авторы</p>
+            </aside>
+        </div>
+        <div class="form-container">
+            <div class="text-area" id="text-area" contenteditable="true"></div>
+            <select id="text-style">
+                <option value="normal">Обычный</option>
+                <option value="italic">Курсив</option>
+                <option value="bold">Жирный</option>
+            </select>
+            <select id="font-size">
+                <option value="14px">14px</option>
+                <option value="16px">16px</option>
+                <option value="18px">18px</option>
+            </select>
+            <select id="text-color">
+                <option value="black">Черный</option>
+                <option value="red">Красный</option>
+                <option value="blue">Синий</option>
+            </select>
+            <input type="text" id="new-word" placeholder="Введите слово">
+            <button id="add-word-button">Добавить слово</button>
+            <select id="word-list">
+                <option value="word1">Слово1</option>
+                <option value="word2">Слово2</option>
+                <option value="word3">Слово3</option>
+                <option value="word4">Слово4</option>
+                <option value="word5">Слово5</option>
+            </select>
+            <div>
+                <input type="radio" name="position" value="before" id="before" checked>
+                <label for="before">Before</label>
+                <input type="radio" name="position" value="after" id="after" checked>
+                <label for="after">After</label>
+            </div>
+            <button id="insert-word">Вставить слово</button>
+            <button id="create-blog">Создать блог</button>
+
+        </div>
+        <footer>
+            <p>&copy; Ultimatum, 2020-2025</p>
+        </footer>
+    </div>
+    <script src="script_3.js"></script>
+</body>
+</html>
