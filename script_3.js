@@ -56,9 +56,9 @@ document.addEventListener("DOMContentLoaded", function () {
             textArea.insertBefore(span, textArea.firstChild);
         } else if (position === "after") {
             if (textArea.innerHTML.trim() !== "" && !textArea.innerHTML.endsWith(" ")) {
-                textArea.innerHTML += " ";
+                textArea.innerHTML += ' ';
             }
-            textArea.appendChild(span);
+            textArea.innerHTML += span.textContent;
         }
     }
     
