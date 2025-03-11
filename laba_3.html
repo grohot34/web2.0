@@ -17,17 +17,22 @@
         <div class="main-content">
             <article>
                 <h2>Новые блоги</h2>
-                <section>
-                    <p>Раздел</p>
+                <section id="blog-section">
+                    <p>Женщина попала в аварию, передвигаясь на велосипеде...</p>
                 </section>
             </article>
             <aside>
-                <h2>Актуальные темы</h2>
-                <p>Лучшие авторы</p>
+                <h2>Лучшие авторы</h2>
+                <p>Крупеник В.Л</p>
+                <p>Крамениц Д.Ю.</p>
+                <p>Золотов Ю.В.</p>
             </aside>
         </div>
         <div class="form-container">
-            <div class="text-area" id="text-area" contenteditable="true"></div>
+            <div class="text-area" id="text-area" contenteditable="true">
+                <!-- <span class="placeholder" id="placeholder">Напишите название для нового блога...</span> -->
+            </div>
+            <button id="create-blog">Создать блог</button>
             <select id="text-style">
                 <option value="normal">Обычный</option>
                 <option value="italic">Курсив</option>
@@ -59,8 +64,6 @@
                 <label for="after">After</label>
             </div>
             <button id="insert-word">Вставить слово</button>
-            <button id="create-blog">Создать блог</button>
-
         </div>
         <footer>
             <p>&copy; Ultimatum, 2020-2025</p>
