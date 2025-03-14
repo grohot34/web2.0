@@ -29,41 +29,43 @@
             </aside>
         </div>
         <div class="form-container">
-            <div class="text-area" id="text-area" contenteditable="true">
-                <!-- <span class="placeholder" id="placeholder">Напишите название для нового блога...</span> -->
-            </div>
-            <button id="create-blog">Создать блог</button>
-            <select id="text-style">
+            <div class="text-area" id="text-area" contenteditable="true"></div>
+            <button class="top2" id="create-blog">Создать блог</button>
+            <select class="top3" id="text-style">
                 <option value="normal">Обычный</option>
                 <option value="italic">Курсив</option>
                 <option value="bold">Жирный</option>
             </select>
-            <select id="font-size">
+            <select class="top4"id="font-size">
                 <option value="14px">14px</option>
                 <option value="16px">16px</option>
                 <option value="18px">18px</option>
             </select>
-            <select id="text-color">
+            <select class="top5" id="text-color">
                 <option value="black">Черный</option>
                 <option value="red">Красный</option>
                 <option value="blue">Синий</option>
             </select>
-            <input type="text" id="new-word" placeholder="Введите слово">
-            <button id="add-word-button">Добавить слово</button>
-            <select id="word-list">
+            <input class="bot1" type="text" id="new-word" placeholder="Введите слово">
+            <button class="bot2" id="add-word-button">Добавить слово</button>
+            <select class="bot3" id="word-list">
                 <option value="word1">Слово1</option>
                 <option value="word2">Слово2</option>
                 <option value="word3">Слово3</option>
                 <option value="word4">Слово4</option>
                 <option value="word5">Слово5</option>
             </select>
-            <div>
+            <div class="bot4">
+                <label for="before">
                 <input type="radio" name="position" value="before" id="before" checked>
-                <label for="before">Before</label>
+                    Before
+                </label>
+                <label for="after">
                 <input type="radio" name="position" value="after" id="after" checked>
-                <label for="after">After</label>
+                    After
+                </label>
             </div>
-            <button id="insert-word">Вставить слово</button>
+            <button class="bot5" id="insert-word">Вставить слово</button>
         </div>
         <footer>
             <p>&copy; Ultimatum, 2020-2025</p>

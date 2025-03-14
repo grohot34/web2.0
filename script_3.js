@@ -31,14 +31,16 @@ document.addEventListener("DOMContentLoaded", function () {
     function createBlog() {
         const textArea = document.getElementById("text-area");
         const blogSection = document.getElementById("blog-section");
-        const blogText = textArea.innerHTML;
-        const newBlogPost = document.createElement("div");
+        const blogText = textArea.innerHTML.trim();
+        if (blogText != "<br>") {
+            const newBlogPost = document.createElement("div");
         newBlogPost.classList.add("blog-post");
         newBlogPost.innerHTML = `<p>${blogText}</p>`;
-
         blogSection.appendChild(newBlogPost);
-
-        textArea.innerHTML = "";
+        
+        textArea.innerHTML = null;
+        }
+        
     }
 
     document.getElementById('add-word-button').addEventListener('click', function() {
