@@ -20,9 +20,9 @@ document.addEventListener("DOMContentLoaded", function () {
         span.style.color = color;
 
         if (position === "before") {
-            textArea = " " + textArea.prepend(span);
+            textArea = textArea.prepend(span);
         } else {
-            textArea = textArea.appendChild(span) + " ";
+            textArea = textArea.appendChild(span);
         }
     }
     const createBlogButton = document.getElementById("create-blog");

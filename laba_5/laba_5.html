@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Жильцы многоквартирного дома</title>
+    <link rel="stylesheet" href="laba_5.css">
+    <script src="laba_5.js"></script>
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-left">
+            <h2>Форма добавления жильца</h2>
+            <form id="residentForm">
+                <label>ФИО:</label>
+                <input type="text" id="fullName" required>
+                <label>Номер квартиры:</label>
+                <input type="number" id="apartmentNumber" min="1" required>
+                <label>Площадь квартиры (м²):</label>
+                <input type="number" id="apartmentSize" min="1" step="0.1" required>
+                <label>Приватизирована:</label>
+                <select id="privatized">
+                    <option value="Да">Да</option>
+                    <option value="Нет">Нет</option>
+                </select>
+                <label>Свойство:</label>
+                <select id="propertySelect">
+                    <option value="Балкон">Балкон</option>
+                    <option value="Количество комнат">Количество комнат</option>
+                    <option value="Этаж">Этаж</option>
+                    <option value="Тип ремонта">Тип ремонта</option>
+                </select>
+                <label>Значение свойства:</label>
+                <input type="text" id="propertyValue">
+                <button type="button" class="add-btn" onclick="addResident()">Добавить жильца</button>
+                <button type="button" class="clear-btn" onclick="clearForm()">Очистить форму</button>
+            </form>
+        </div>
+        <div class="center-info">
+            <h3>Статистика</h3>
+            <p>Всего жильцов: <span id="totalResidents">0</span></p>
+            <p>Приватизированные: <span id="privatizedCount">0</span></p>
+            <p>Средняя площадь квартиры: <span id="averageSize">0</span> м²</p>
+        </div>
+        <div class="form-right">
+            <h2>Дополнительная информация</h2>
+            <p>Здесь можно разместить дополнительную информацию или подсказки для пользователя.</p>
+            <ul>
+                <li>Пример: Добавьте жильца, заполнив форму слева.</li>
+                <li>Убедитесь, что данные введены корректно.</li>
+                <li>Вы можете отсортировать список жильцов по номерам квартир.</li>
+            </ul>
+        </div>
+    </div>
+    <h2>Список жильцов</h2>
+    <div class="filters">
+        <button onclick="filterResidents('all')">Все</button>
+        <button onclick="filterResidents('Да')">Приватизированные</button>
+        <button onclick="filterResidents('Нет')">Неприватизированные</button>
+        <button onclick="showMinAreaResident()">Жилец с мин. площадью</button>
+        <button onclick="showMaxAreaResident()">Жилец с макс. площадью</button>
+    </div>
+    <div class="search-container">
+        <input type="number" id="searchNumber" placeholder="Введите номер квартиры">
+        <button onclick="searchApartment()">🔍 Найти</button>
+    </div>
+    <table id="residentsTable">
+        <thead>
+            <tr>
+                <th>Номер квартиры</th>
+                <th>ФИО</th>
+                <th>Площадь</th>
+                <th>Приватизировано</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</body>
+</html>

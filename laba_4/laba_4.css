@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f2f5;
+    color: #333;
+}
+header, footer {
+    background: #4a90e2;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+main {
+    display: flex;
+    flex: 1;
+}
+.content {
+    flex: 1;
+    padding: 20px;
+    background: white;
+}
+.sidebar {
+    display: flex;
+    flex-direction: row;
+    width: 30%;
+}
+nav, aside {
+    flex: 1;
+    padding: 20px;
+    background: #7baaf7;
+    color: white;
+    text-align: center;
+}
+nav {
+    border-right: 1px solid #333;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+th {
+    background-color: #4a90e2;
+    color: white;
+    padding: 10px;
+}
+td {
+    padding: 10px;
+}
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+#resultsArea {
+    display: none;
+}
+#resultsArea, #formArea {
+    transition: opacity 0.3s ease;
+}
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 5px 0;
+}
+.gender-group {
+    margin: 1px 0;
+    font-weight: 500;
+}
+.gender-options {
+    display: flex;
+    gap: 40px;
+    margin-top: 5px;
+}
+.gender-options label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: normal;
+}
+form, #resultsArea {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+button {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+button:hover {
+    background-color: #357ab8;
+}
+input, select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+label {
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+    color: #333;
+}
+.notification {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+    }
+    .sidebar {
+        flex-direction: column;
+        width: 100%;
+    }
+}

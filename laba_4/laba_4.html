@@ -1,113 +1,11 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flexbox Layout</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            font-family: Arial, sans-serif;
-        }
-        header, footer {
-            background: #ccc;
-            padding: 20px;
-            text-align: center;
-        }
-        main {
-            display: flex;
-            flex: 1;
-        }
-        .content {
-            flex: 1;
-            padding: 20px;
-            background: white;
-        }
-        .sidebar {
-            display: flex;
-            flex-direction: row;
-            width: 30%;
-        }
-        nav, aside {
-            flex: 1;
-            padding: 20px;
-            background: #888;
-            color: white;
-            text-align: center;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-        }
-        #resultsArea {
-            display: none;
-        }
-    </style>
-    <script>
-        let storedData = [];
-
-        function saveData(event) {
-            event.preventDefault();
-            const formData = new FormData(event.target);
-            let entry = {};
-            formData.forEach((value, key) => {
-                entry[key] = value;
-            });
-            storedData.push(entry);
-            document.getElementById('surveyForm').reset();
-        }
-
-        function showResults() {
-            let formArea = document.getElementById('formArea');
-            let resultsArea = document.getElementById('resultsArea');
-            let contentDiv = document.getElementById('contentArea');
-            
-            let tableContent = '<table><tr><th>Поле</th><th>Значение</th></tr>';
-            storedData.forEach(entry => {
-                Object.entries(entry).forEach(([key, value]) => {
-                    tableContent += `<tr><td>${key}</td><td>${value}</td></tr>`;
-                });
-            });
-            tableContent += '</table>';
-
-            resultsArea.innerHTML = '<h2>Результаты опроса</h2>' + tableContent + 
-            '<button type="button" onclick="goBackToForm()">Назад</button>';
-            formArea.style.display = 'none';
-            resultsArea.style.display = 'block';
-        }
-
-        function clearForm() {
-            document.getElementById('surveyForm').reset();
-        }
-
-        function goBackToForm() {
-            let formArea = document.getElementById('formArea');
-            let resultsArea = document.getElementById('resultsArea');
-            formArea.style.display = 'block';
-            resultsArea.style.display = 'none';
-        }
-    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Опросник</title>
+    <link rel="stylesheet" href="laba_4.css">
+    <script src="laba_4.js" defer></script>
 </head>
 <body>
     <header>
@@ -119,31 +17,37 @@
             <article>
                 <div id="formArea">
                     <h2>Опрос пользователя</h2>
-                    <form id="surveyForm" onsubmit="saveData(event)">
-                        <label>Имя: <input type="text" name="name" required></label>
-                        <label>Дата и время: <input type="datetime-local" name="datetime" required></label>
+                    <form id="surveyForm">
+                        <label>Имя: <input type="text" name="Имя" required></label>
+                        <label>Дата и время: <input type="datetime-local" name="Время" required></label>
                         <label>Выберите вариант: 
-                            <select name="option" required>
+                            <select name="Контактная группа" required>
                                 <option value="">Выберите вариант</option>
-                                <option value="1">Вариант 1</option>
-                                <option value="2">Вариант 2</option>
-                                <option value="3">Вариант 3</option>
+                                <option value="A1">A1</option>
+                                <option value="МТС">МТС</option>
+                                <option value="life">life</option>
                             </select>
                         </label>
-                        <label><input type="checkbox" name="agree" required> Согласен(-а) с условиями</label>
-                        <label><input type="radio" name="gender" value="male" required> Мужской</label>
-                        <label><input type="radio" name="gender" value="female" required> Женский</label>
-                        <label>Сайт: <input type="url" name="website" required></label>
-                        <label>Телефон: <input type="tel" name="phone" required></label>
+                        <div class="checkbox-group">
+                            <label for="agreement">Согласен(-а) с условиями</label>
+                            <input type="checkbox" id="agreement" name="Согласие" required>
+                        </div>
+                        <div class="gender-group">
+                            <span>Пол:</span>
+                            <div class="gender-options">
+                                <label>Мужской<br><input type="radio" name="Пол" value="Мужской" required></label>
+                                <label>Женский<br><input type="radio" name="Пол" value="Женский" required></label>
+                            </div>
+                        </div>
+                        <label>Сайт: <input type="url" name="Веб-сайт" required></label>
+                        <label>Телефон: <input type="tel" name="Телефон" required></label>
                         <button type="submit">Отправить</button>
                         <button type="button" onclick="clearForm()">Очистить содержимое</button>
                         <button type="button" onclick="showResults()">Посмотреть результаты</button>
+                        <button type="button" onclick="clearResults()">Очистить результаты</button>
                     </form>
                 </div>
-
-                <div id="resultsArea">
-                    <!-- Результаты будут отображаться здесь -->
-                </div>
+                <div id="resultsArea"></div>
             </article>
         </div>
         <div class="sidebar">
@@ -156,15 +60,18 @@
                 </ul>
             </nav>
             <aside>
-                <h3>Как пройти опрос?</h3>
-                <p>Пожалуйста, заполните все поля и отправьте форму. Это займет всего несколько минут!</p>
-                <p>Ваши данные помогут нам улучшить наш сервис.</p>
+                <h3>О нас</h3>
+                <p>
+                    Уважаемые участники! В настоящее время проводится опрос контактной группы с целью оценки эффективности текущего взаимодействия и выявления направлений для улучшения. Ваше мнение очень важно!
+                </p>
+                <p>
+                    Пожалуйста, уделите несколько минут, чтобы пройти короткий опрос. Это поможет нам сделать совместную работу более продуктивной и комфортной.
+                </p>
             </aside>
         </div>
     </main>
     <footer>
-        <p>&copy; 2025 Опросный сервис. Все права защищены.</p>
-        <p>Спасибо, что уделили время нашему опросу!</p>
+        <p>© 2025 Опрос. Все права защищены.</p>
     </footer>
 </body>
 </html>
