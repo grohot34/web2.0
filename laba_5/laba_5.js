@@ -38,15 +38,15 @@ function addResident() {
     let residents = JSON.parse(localStorage.getItem("residents")) || [];
     residents.push(resident);
     localStorage.setItem("residents", JSON.stringify(residents));
-    console.log(residents);
+    addToHistory(`Добавлена новая запись с квартирой ${apartmentNumberInt}`);
     loadResidents();
     updateStatistics();
     document.getElementById("residentForm").reset();
     showNotification("Жилец успешно добавлен!");
+    
 }
 
 function showMinAreaResident() {
-    console.log("[fq")
     let residents = JSON.parse(localStorage.getItem("residents")) || [];
     if (residents.length === 0) return;
 
@@ -100,7 +100,6 @@ function loadResidents(filter = 'all') {
     filteredResidents.forEach((resident, index) => {
         addResidentToTable(resident, index, columns);
     });
-    console.log(residents);
 }
 
 function loadResidentsByList(residents) {
@@ -293,8 +292,9 @@ function confirmDelete(index) {
 
 function deleteResident(index) {
     let residents = JSON.parse(localStorage.getItem("residents")) || [];
-    residents.splice(index, 1);
+    let deletedResident = residents.splice(index, 1)[0];
     localStorage.setItem("residents", JSON.stringify(residents));
+    addToHistory(`Запись с квартирой ${deletedResident.apartmentNumber} была удалена`);
     loadResidents();
     updateStatistics();
 }
@@ -326,4 +326,31 @@ function filterResidents(privatized) {
 
 function clearForm() {
     document.getElementById("residentForm").reset();
+}
+
+function addToHistory(message) {
+    let history = JSON.parse(localStorage.getItem("history")) || [];
+    let timestamp = new Date().toLocaleString();
+    history.push(`[${timestamp}] ${message}`);
+    localStorage.setItem("history", JSON.stringify(history));
+}
+
+function showHistory() {
+    let history = JSON.parse(localStorage.getItem("history")) || [];
+    let list = document.getElementById("historyList");
+    list.innerHTML = "";
+
+    history.reverse().forEach(entry => {
+        let li = document.createElement("li");
+        li.textContent = entry;
+        list.appendChild(li);
+    });
+
+    document.getElementById("historyContainer").style.display = "block";
+    document.getElementById("showHistoryBtn").style.display = "none";
+}
+
+function hideHistory() {
+    document.getElementById("historyContainer").style.display = "none";
+    document.getElementById("showHistoryBtn").style.display = "inline-block";
 }

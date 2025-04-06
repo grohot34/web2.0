@@ -52,7 +52,14 @@
             </ul>
         </div>
     </div>
-    <h2>Список жильцов</h2>
+    <div class="history">
+        <h2>Список жильцов</h2>
+        <button type="button" id="showHistoryBtn" onclick="showHistory()">История изменений</button>
+        <div id="historyContainer">
+            <ul id="historyList"></ul>
+            <button onclick="hideHistory()">Закрыть</button>
+        </div>
+    </div>
     <div class="filters">
         <button onclick="filterResidents('all')">Все</button>
         <button onclick="filterResidents('Да')">Приватизированные</button>
