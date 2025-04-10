@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Панель управления контентом</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f4; /* Фон страницы */
+    }
+
+    #parent {
+      position: relative;
+      border: 2px solid #000;
+      padding: 10px;
+      min-height: 200px;
+      margin-bottom: 20px;
+      background-color: #fff; /* Фон родительского контейнера */
+    }
+
+    .child {
+      position: relative;
+      padding: 20px;
+      margin: 10px 0;
+      color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .child div {
+      margin-bottom: 5px;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 5px;
+      border-radius: 5px;
+    }
+
+    select, button {
+      margin-right: 10px;
+      padding: 5px;
+    }
+
+    .heading {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    .controls {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<h2 class="heading">Панель управления контентом</h2>
+<p>Добавляйте, сортируйте и настраивайте информационные блоки для веб-страницы. Каждый блок будет отображать статью или заметку, которую можно настроить по цвету, тексту и ширине.</p>
+
+<div class="controls">
+  <label>Очередь:
+    <select id="orderSelect">
+      <option value="last">В конец</option>
+      <option value="0">В начало</option>
+      <option value="1">Позиция 2</option>
+      <option value="2">Позиция 3</option>
+      <option value="3">Позиция 4</option>
+      <option value="4">Позиция 5</option>
+    </select>
+  </label>
+  <label>Цвет: 
+    <select id="colorSelect"></select>
+  </label>
+  <label>Текст:
+    <select id="textSelect"></select>
+  </label>
+  <label>Ширина:
+    <select id="widthSelect">
+      <option value="200px">200px</option>
+      <option value="300px">300px</option>
+      <option value="400px">400px</option>
+    </select>
+  </label>
+  <label>Фон страницы:
+    <input type="color" id="backgroundColor" value="#f4f4f4">
+  </label>
+  <button onclick="addBlock()">Добавить блок</button>
+  <button onclick="sortBlocks()">Сортировать по цвету</button>
+  <button onclick="sortBlocksByText()">Сортировать по тексту</button>
+</div>
+
+<h3>Ваши информационные блоки:</h3>
+<div id="parent"></div>
+
+<script>
+  // Данные для блоков
+  const colorsSet = new Set(['red', 'green', 'blue', 'purple', 'orange', 'teal', 'brown', 'gray']);
+  const textsSet = new Set([
+    'Новости дня: Важные события сегодня', 
+    'Специальное предложение: Скидки на авто', 
+    'Технологии будущего: Влияние ИИ на повседневную жизнь', 
+    'Экологические инициативы: Борьба с загрязнением', 
+    'Глобальные изменения климата: Что нас ждет', 
+    'Последние тренды в мире моды', 
+    'Новые подходы в обучении: Дистанционное образование', 
+    'Развитие городов: Умные города и их особенности'
+  ]);
+
+  // Заполнение выпадающих списков
+  const colorSelect = document.getElementById('colorSelect');
+  const textSelect = document.getElementById('textSelect');
+
+  colorsSet.forEach(color => {
+    const option = document.createElement('option');
+    option.value = color;
+    option.textContent = color;
+    colorSelect.appendChild(option);
+  });
+
+  textsSet.forEach(text => {
+    const option = document.createElement('option');
+    option.value = text;
+    option.textContent = text;
+    textSelect.appendChild(option);
+  });
+
+  // Родительский класс
+  class BlockCreator {
+    constructor() {
+      this.color = 'gray';
+      this.text = 'Параграф по умолчанию';
+      this.width = '300px';
+      this.background = '#fff';
+    }
+
+    initWithColor(color) {
+      this.color = color;
+      this.text = 'Цветной блок';
+      this.width = '300px';
+    }
+
+    initWithColorAndText(color, text) {
+      this.color = color;
+      this.text = text;
+      this.width = '300px';
+    }
+
+    initWithColorTextAndWidth(color, text, width) {
+      this.color = color;
+      this.text = text;
+      this.width = width;
+    }
+
+    setColor(color) {
+      this.color = color;
+    }
+
+    setText(text) {
+      this.text = text;
+    }
+
+    setWidth(width) {
+      this.width = width;
+    }
+
+    createParagraph(text) {
+      const p = document.createElement('p');
+      p.textContent = text;
+      return p;
+    }
+
+    render(parent) {
+      const outerDiv = document.createElement('div');
+      outerDiv.className = 'child';
+      outerDiv.style.backgroundColor = this.color;
+      outerDiv.style.width = this.width;
+
+      const child = document.createElement('div');
+      const p1 = this.createParagraph(this.text);
+      child.appendChild(p1);
+
+      
+
+      outerDiv.appendChild(child);
+      
+
+      return outerDiv;
+    }
+  }
+
+  // Дочерний класс
+  class AdvancedBlockCreator extends BlockCreator {
+    constructor() {
+      super();
+    }
+
+    createAdvancedBlock(parent) {
+      const element = this.render(); // создаем элемент
+      parent.appendChild(element);   // добавляем его в родительский контейнер
+    }
+  }
+
+  // Функция добавления нового блока по кнопке
+  function addBlock() {
+    const color = colorSelect.value;
+    const text = textSelect.value;
+    const width = document.getElementById('widthSelect').value;
+    const order = document.getElementById('orderSelect').value;
+
+    const container = document.getElementById('parent');
+    const block = new AdvancedBlockCreator();
+
+    // Инициализация блока с переданными параметрами
+    block.initWithColorTextAndWidth(color, text, width);
+
+    const element = block.render(); // используем render
+
+    if (order === "last") {
+      container.appendChild(element);
+    } else {
+      const index = parseInt(order);
+      const referenceNode = container.children[index];
+      container.insertBefore(element, referenceNode || null); // вставляем до referenceNode, если он есть
+    }
+  }
+
+  // Функция сортировки блоков по цвету
+  function sortBlocks() {
+    const container = document.getElementById('parent');
+    const blocks = Array.from(container.children);
+    blocks.sort((a, b) => {
+      const colorA = a.style.backgroundColor;
+      const colorB = b.style.backgroundColor;
+      return colorA.localeCompare(colorB); // Сортировка по цвету
+    });
+
+    blocks.forEach(block => container.appendChild(block)); // пересортировать элементы в контейнере
+  }
+
+  // Функция сортировки блоков по тексту
+  function sortBlocksByText() {
+    const container = document.getElementById('parent');
+    const blocks = Array.from(container.children);
+    blocks.sort((a, b) => {
+      const textA = a.querySelector('div p').textContent;
+      const textB = b.querySelector('div p').textContent;
+      return textA.localeCompare(textB); // Сортировка по тексту
+    });
+
+    blocks.forEach(block => container.appendChild(block)); // пересортировать элементы в контейнере
+  }
+
+  // Функция изменения фона страницы
+  document.getElementById('backgroundColor').addEventListener('input', (event) => {
+    document.body.style.backgroundColor = event.target.value;
+  });
+
+  // Создание двух начальных блоков при загрузке страницы
+  window.onload = () => {
+    const container = document.getElementById('parent');
+
+    // Создание двух начальных блоков
+    const block1 = new AdvancedBlockCreator();
+    block1.initWithColor('blue'); // Инициализация с цветом
+    block1.createAdvancedBlock(container);
+
+    const block2 = new AdvancedBlockCreator();
+    block2.initWithColorAndText('green', 'Привет из второго блока'); // Инициализация с цветом и текстом
+    block2.createAdvancedBlock(container);
+
+    const block3 = new AdvancedBlockCreator();
+    block3.initWithColorTextAndWidth('red', 'Третий блок', '400px'); // Инициализация со всеми параметрами
+    block3.createAdvancedBlock(container);
+  };
+</script>
+
+</body>
+</html>
