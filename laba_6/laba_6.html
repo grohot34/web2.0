@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Панель управления контентом</title>
+  <link rel="stylesheet" href="laba_6.css">
+</head>
+<body>
+
+<h2 class="heading">Панель управления контентом</h2>
+<p>Добавляйте, сортируйте и настраивайте информационные блоки для веб-страницы. Каждый блок будет отображать статью или заметку, которую можно настроить по цвету, тексту и ширине.</p>
+
+<div class="controls">
+  <label>Очередь:
+    <select id="orderSelect">
+      <option value="last">В конец</option>
+      <option value="0">В начало</option>
+      <option value="1">Позиция 2</option>
+      <option value="2">Позиция 3</option>
+      <option value="3">Позиция 4</option>
+      <option value="4">Позиция 5</option>
+    </select>
+  </label>
+  <label>Цвет: 
+    <select id="colorSelect"></select>
+  </label>
+  <label>Текст:
+    <select id="textSelect"></select>
+  </label>
+  <label>Ширина:
+    <select id="widthSelect">
+      <option value="200px">200px</option>
+      <option value="300px">300px</option>
+      <option value="400px">400px</option>
+    </select>
+  </label>
+  <label>Фон Блока:
+    <input type="color" id="backgroundColor" value="#f4f4f4">
+  </label>
+  <button onclick="addBlock()">Добавить блок</button>
+  <button onclick="sortBlocks()">Сортировать по цвету</button>
+  <button onclick="sortBlocksByText()">Сортировать по тексту</button>
+  <button onclick="removeAllBlocks()" class="delete-all-btn"> Удалить все блоки</button>
+
+</div>
+
+<h3>Ваши информационные блоки:</h3>
+<div id="parent"></div>
+
+<script src="laba_6.js"></script>
+
+</body>
+</html>
