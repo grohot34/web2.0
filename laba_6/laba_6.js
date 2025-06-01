@@ -90,17 +90,16 @@ class BlockCreator {
 }
 
 class AdvancedBlockCreator extends BlockCreator {
-    constructor() {
-      super();
-    }
-
-    createAdvancedBlock(parent) {
-      const element = this.render();
-      parent.appendChild(element);
-    }
+  constructor() {
+    super();
   }
+  createAdvancedBlock(parent) {
+    const element = this.render();
+    parent.appendChild(element);
+  }
+}
 
-    let db;
+  let db;
   function openDB() {
     return new Promise((resolve, reject) => {
       const request = indexedDB.open("BlockDatabase", 1);
@@ -168,7 +167,7 @@ class AdvancedBlockCreator extends BlockCreator {
       const tx = db.transaction("settings", "readonly");
       const store = tx.objectStore("settings");
       const request = store.get("background");
-      request.onsuccess = () => resolve(request.result?.value || '#ffffff');
+      request.onsuccess = () => resolve(request.result.value || '#ffffff');
     });
   }
 

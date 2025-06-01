@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Обработка текста</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Введите текст (20 строк):</h2>
+    <textarea id="textarea" placeholder="Введите текст сюда..."></textarea>
+
+    <label for="filterOption">Выберите способ фильтрации:</label>
+    <select id="filterOption">
+      <option value="all">Все строки</option>
+      <option value="even">Чётные строки</option>
+      <option value="odd">Нечётные строки</option>
+    </select>
+
+    <div>
+      <button onclick="saveText()">Сохранить текст</button>
+      <button onclick="applyFilter()">Показать результат</button>
+    </div>
+
+    <hr>
+
+    <h3>Исходный текст:</h3>
+    <p id="originalText">...</p>
+
+    <h3>Изменённый текст:</h3>
+    <p id="filteredText">...</p>
+  </div>
+
+  <script>
+    async function saveText() {
+      const text = document.getElementById('textarea').value;
+      await fetch('/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text })
+      });
+      alert('Текст сохранён!');
+    }
+
+    async function applyFilter() {
+      const option = document.getElementById('filterOption').value;
+
+      await fetch('/filter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ option })
+      });
+
+      const [original, filtered] = await Promise.all([
+        fetch('/get-original').then(res => res.json()),
+        fetch('/get-filtered').then(res => res.json())
+      ]);
+
+      document.getElementById('originalText').innerText = original.content;
+      document.getElementById('filteredText').innerText = filtered.content;
+    }
+  </script>
+</body>
+</html>

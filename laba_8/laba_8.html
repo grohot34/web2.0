@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Рекламный ролик - Строительная компания "Ольвия"</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="container">
+    <img src="renovation-logo.jpg" alt="Ольвия" class="logo">
+    <h1>Рекламный ролик компании "Ольвия"</h1>
+    <button onclick="startWithDelay()">Начать с задержкой</button>
+    <button onclick="cancelStart()">Прервать показ</button>
+    <button onclick="showAd()">Показать немедленно</button>
+  </div>
+
+  <div id="overlay"></div>
+
+  <div id="modal">
+    <video id="adVideo" controls>
+      <source src="строительная_компания.mp4" type="video/mp4">
+      Ваш браузер не поддерживает видео.
+    </video>
+    <p>
+      <strong>Строительная компания "Ольвия"</strong> — ведущая строительная компания, специализирующаяся на жилых и коммерческих объектах. Надёжность, качество и соблюдение сроков — наш приоритет!
+    </p>
+  </div>
+
+  <div id="endMessage">Показ ролика завершён.</div>
+
+  <div id="toast"></div>
+
+  <script type="module">
+  import { startWithDelay, cancelStart } from './adPlayer.js';
+
+  document.getElementById('start-btn').addEventListener('click', startWithDelay);
+  document.getElementById('cancel-btn').addEventListener('click', cancelStart);
+</script>
+
+
+</body>
+</html>

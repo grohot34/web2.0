@@ -3,207 +3,100 @@
 <head>
   <meta charset="UTF-8">
   <title>ES6 Модальные окна</title>
-  <style>
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      background: white;
-      border: 2px solid #333;
-      padding: 1rem;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    }
-    .modal img {
-      max-width: 100%;
-      height: auto;
-    }
-    .overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background: rgba(0,0,0,0.5);
-      display: none;
-      z-index: 999;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
+  <script src="modals.js" defer></script>
 </head>
 <body>
-  <div>
-    <label>Размер:
-      <select id="size-select">
-        <option value="300px">Маленькое</option>
-        <option value="400px">Среднее</option>
-        <option value="500px">Большое</option>
-        <option value="600px">Очень большое</option>
-        <option value="700px">Огромное</option>
-      </select>
-    </label>
-    <label>Заголовок:
-      <select id="title-select">
-        <option>Окно 1</option>
-        <option>Окно 2</option>
-        <option>Галерея</option>
-        <option>Информация</option>
-        <option>Контакты</option>
-      </select>
-    </label>
-    <label>Картинка:
-      <select id="img-select">
-        <option value="https://via.placeholder.com/150">Картинка 1</option>
-        <option value="https://via.placeholder.com/200">Картинка 2</option>
-        <option value="https://via.placeholder.com/250">Картинка 3</option>
-        <option value="https://via.placeholder.com/300">Картинка 4</option>
-        <option value="https://via.placeholder.com/350">Картинка 5</option>
-      </select>
-    </label>
-    <label>Надпись:
-      <select id="button-text-select">
-        <option>Открыть окно</option>
-        <option>Показать</option>
-        <option>Запустить</option>
-        <option>Открыть модалку</option>
-        <option>Вперед!</option>
-      </select>
-    </label>
-    <label>Содержимое:
-      <select id="content-select">
-        <option>Пример текста 1</option>
-        <option>Пример текста 2</option>
-        <option>Тут будет ваша реклама</option>
-        <option>Контактная информация</option>
-        <option>Здесь может быть ваш контент</option>
-      </select>
-    </label>
-    <button id="create-modal-btn">Создать модальное окно</button>
-    <hr>
-<h3>Редактировать модальное окно:</h3>
-<div>
-  <label>Выбери окно:
-    <select id="modal-index-select"></select>
-  </label><br>
-  <label>Новый заголовок:
-    <input type="text" id="new-title">
-  </label><br>
-  <label>Новое содержимое:
-    <input type="text" id="new-content">
-  </label><br>
-  <label>Новая картинка (URL):
-    <input type="text" id="new-img">
-  </label><br>
-  <button id="edit-modal-btn">Изменить окно</button>
-</div>
-
+  <div class="center-wrapper">
+    <div>
+      <label>Размер:
+        <select id="size-select">
+          <option value="300px">Маленькое</option>
+          <option value="400px">Среднее</option>
+          <option value="500px">Большое</option>
+          <option value="600px">Очень большое</option>
+          <option value="700px">Огромное</option>
+        </select>
+      </label>
+      <label>Заголовок:
+        <select id="title-select">
+          <option>Человек</option>
+          <option>Мобильное устройство</option>
+          <option>Галерея</option>
+          <option>Прогулка</option>
+          <option>Орбита</option>
+        </select>
+      </label>
+      <label>Картинка:
+        <select id="img-select">
+          <option value="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?auto=format&fit=crop&w=150&q=80">человек</option>
+          <option value="https://images.unsplash.com/photo-1526045612212-70caf35c14df?auto=format&fit=crop&w=200&q=80">пользователь</option>
+          <option value="https://images.unsplash.com/photo-1495567720989-cebdbdd97913?auto=format&fit=crop&w=250&q=80">закат</option>
+          <option value="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=300&q=80">лес</option>
+          <option value="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=350&q=80">космос</option>
+        </select>
+      </label>
+      <label>Надпись:
+        <select id="button-text-select">
+          <option>Погнали</option>
+          <option>Выпуск продукта</option>
+          <option>Репост</option>
+          <option>Красота</option>
+          <option>Вперед!</option>
+        </select>
+      </label>
+      <label>Содержимое:
+        <select id="content-select">
+          <option>Человеческая реальность</option>
+          <option>Ученые выяснили способности мобильных устрйоств</option>
+          <option>Галерея в скором времени будет переполнена</option>
+          <option>Пожарная безопасность</option>
+          <option>Будущее за нами</option>
+        </select>
+      </label>
+      <label>Фон окна:
+        <select id="bgcolor-select">
+          <option value="#ffffff">Белый</option>
+          <option value="#f8f9fa">Серый</option>
+          <option value="#e0f7fa">Голубой</option>
+          <option value="#fce4ec">Розовый</option>
+          <option value="#e8f5e9">Зеленый</option>
+        </select>
+      </label>
+      <button id="create-modal-btn">Создать модальное окно</button>
+      <h3>Редактировать модальное окно:</h3>
+      <div>
+        <label>Выбери окно:
+          <select id="modal-index-select"></select>
+        </label><br>
+        <label>Новый заголовок:
+          <input type="text" id="new-title" placeholder="Введите новый заголовок">
+        </label><br>
+        <label>Новое содержимое:
+          <input type="text" id="new-content" placeholder="Введите новый текст">
+        </label><br>
+        <label>Новая картинка (URL):
+          <input type="text" id="new-img" placeholder="URL новой картинки">
+        </label><br>
+        <button id="edit-modal-btn">Изменить окно</button>
+        <button id="delete-modal-btn">Удалить окно</button>
+      </div>
+    </div>
   </div>
 
   <div id="buttons-container"></div>
   <div class="overlay" id="overlay"></div>
-
-  <script>
-    class Modal {
-      constructor(title, content, imageSrc, size) {
-        this.title = title;
-        this.content = content;
-        this.imageSrc = imageSrc;
-        this.size = size;
-      }
-
-      createDOMElement(buttonText) {
-        const overlay = document.getElementById('overlay');
-
-        const modalState = () => ({
-          title: this.title,
-          content: this.content,
-          imageSrc: this.imageSrc,
-          size: this.size,
-        });
-
-        const show = () => {
-          const state = modalState();
-          const modal = document.createElement('div');
-          modal.className = 'modal';
-          modal.style.width = state.size;
-
-          modal.innerHTML = `
-            <h2>${state.title}</h2>
-            <img src="${state.imageSrc}" alt="Изображение">
-            <p>${state.content}</p>
-            <button id="close-btn">Закрыть</button>
-          `;
-
-          document.body.appendChild(modal);
-          overlay.style.display = 'block';
-          modal.style.display = 'block';
-
-          document.getElementById('close-btn').onclick = () => {
-            modal.remove();
-            overlay.style.display = 'none';
-          };
-        };
-
-        const button = document.createElement('button');
-        button.textContent = buttonText;
-
-        const boundShow = show.bind(this);
-        button.addEventListener('click', boundShow);
-
-        return button;
-      }
-
-      update(newProps) {
-        Object.keys(newProps).forEach(prop => {
-          if (this[prop] !== undefined) this[prop] = newProps[prop];
-        });
-      }
-    }
-
-    const modals = [];
-
-function updateModalIndexSelect() {
-  const select = document.getElementById('modal-index-select');
-  select.innerHTML = '';
-  modals.forEach((_, i) => {
-    const option = document.createElement('option');
-    option.value = i;
-    option.textContent = `Окно ${i + 1}`;
-    select.appendChild(option);
-  });
-}
-
-document.getElementById('create-modal-btn').addEventListener('click', () => {
-  const size = document.getElementById('size-select').value;
-  const title = document.getElementById('title-select').value;
-  const img = document.getElementById('img-select').value;
-  const buttonText = document.getElementById('button-text-select').value;
-  const content = document.getElementById('content-select').value;
-
-  const modal = new Modal(title, content, img, size);
-  const button = modal.createDOMElement(buttonText);
-  document.getElementById('buttons-container').appendChild(button);
-  modals.push(modal);
-
-  updateModalIndexSelect();
-});
-
-document.getElementById('edit-modal-btn').addEventListener('click', () => {
-  const index = +document.getElementById('modal-index-select').value;
-  const newTitle = document.getElementById('new-title').value;
-  const newContent = document.getElementById('new-content').value;
-  const newImg = document.getElementById('new-img').value;
-
-  if (modals[index]) {
-    const updates = {};
-    if (newTitle) updates.title = newTitle;
-    if (newContent) updates.content = newContent;
-    if (newImg) updates.imageSrc = newImg;
-
-    modals[index].update.call(modals[index], updates);
-
-    alert(`Окно ${index + 1} обновлено!`);
-  }
-});
-  </script>
+  <div id="custom-alert" class="modal">
+  <h2 id="custom-alert-title">Уведомление</h2>
+  <p id="custom-alert-text">Текст уведомления</p>
+  <button onclick="closeCustomAlert()">ОК</button>
+  </div>
+  <div id="custom-confirm" class="modal">
+    <h2 id="confirm-title">Подтверждение</h2>
+    <p id="confirm-message">Вы уверены?</p>
+    <button id="confirm-yes">Да</button>
+    <button id="confirm-no">Нет</button>
+  </div>
+  
 </body>
 </html>
